@@ -9,8 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-### Lab 1
-
+### Lab 1 
 DNA <- "ATCGGGA"
 ### Exercise 1
 x <- 3
@@ -34,6 +33,7 @@ Q / 404
 nucleotides <- c("A", "T", "C", "G")
 sort(nucleotides)
 
-Change
+
+
 
 
