@@ -18,5 +18,6 @@ Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+### R Markdown
+
 
