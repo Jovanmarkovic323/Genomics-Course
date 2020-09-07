@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Lab 1 
 [Lab1](Lab-1__Jovan-Markovic.html)
 [Lab2](Lab-2-Reference-example.html)
-[Lab3](Lab-3A.html)
-
+[Lab3A](Lab-3A.html)
+[Lab3B](Lab-3B.html)
 
 
