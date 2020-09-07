@@ -1,0 +1,22 @@
+---
+title: "Lab 2 References example"
+output: html_document
+---
+
+---
+title: 'Lab 2 References example'
+author: "Jovan Markovic"
+output: html_document
+bibliography: data/references.bib
+---
+
+Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].
+
+# REFERENCES
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
