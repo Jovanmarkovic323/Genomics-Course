@@ -1,0 +1,181 @@
+---
+title: "Lab 3A"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+download.file(url = "https://ndownloader.figshare.com/files/2292169",
+              destfile = "data/portal_data_joined.csv")
+
+```
+
+```{r}
+surveys <- read.csv("data/portal_data_joined.csv")
+```
+
+```{r}
+head(surveys)
+```
+```{r}
+str(surveys)
+```
+
+## The class is data.frame
+
+## There are 34786 rows and 13 columns
+
+## 48 different species recorded
+
+## 1.
+
+```{r}
+surveys_200 <- surveys[200, ]
+```
+
+## 2.
+
+```{r}
+n_rows <- nrow(surveys)
+surveys_last <- surveys[n_rows, ]
+```
+
+## 3. 
+
+```{r}
+surveys_middle <- surveys[n_rows / 2, ]
+```
+
+## 4. 
+
+```{r}
+surveys_head <- surveys[-(7:n_rows), ]
+```
+
+```{r}
+sex <- factor(c("male", "female", "female", "male"))
+```
+
+```{r}
+nlevels(sex)
+```
+
+```{r}
+sex # current order
+```
+
+```{r}
+sex <- factor(sex, levels = c("male", "female"))
+sex # after re-ordering
+```
+
+```{r}
+year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))
+```
+
+```{r}
+as.numeric(levels(year_fct))[year_fct]
+```
+
+```{r}
+## bar plot of the number of females and males captured during the experiment:
+plot(as.factor(surveys$sex))
+```
+
+```{r}
+sex <- factor(surveys$sex)
+head(sex)
+```
+
+```{r}
+levels(sex)
+```
+
+```{r}
+levels(sex)[1] <- "undetermined"
+levels(sex)
+```
+
+```{r}
+head(sex)
+```
+
+```{r}
+levels(sex)[2:3] <- c("female", "male")
+sex <- factor(sex, levels = c("female", "male", "undetermined"))
+plot(sex)
+```
+```{r}
+surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = TRUE)
+str(surveys)
+```
+```{r}
+surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = FALSE)
+str(surveys)
+```
+
+```{r}
+surveys$plot_type <- factor(surveys$plot_type)
+```
+
+
+
+```{r}
+country_climate <- data.frame(
+       country = c("Canada", "Panama", "South Africa", "Australia"),
+       climate = c("cold", "hot", "temperate", "hot/temperate"),
+       temperature = c(10, 30, 18, "15"),
+       northern_hemisphere = c(TRUE, TRUE, FALSE, "FALSE"),
+       has_kangaroo = c(FALSE, FALSE, FALSE, 1)
+       )
+```
+
+```{r}
+str(surveys)
+```
+
+```{r}
+library("lubridate")
+```
+
+```{r}
+my_date <- ymd("2015-01-01")
+str(my_date)
+```
+
+```{r}
+my_date <- ymd(paste("2015", "1", "1", sep = "-")) 
+str(my_date)
+```
+
+```{r}
+paste(surveys$year, surveys$month, surveys$day, sep = "-")
+```
+
+```{r}
+ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
+```
+
+```{r}
+surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
+```
+
+```{r}
+str(surveys)
+```
+
+```{r}
+summary(surveys$date)
+```
+
+```{r}
+missing_dates <- surveys[is.na(surveys$date), c("year", "month", "day")]
+
+head(missing_dates)
+```
+## These dates may have failed to parse as they are not actual dates. September and April do not have 31 days. 
