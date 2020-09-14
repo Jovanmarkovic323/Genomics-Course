@@ -1,0 +1,75 @@
+---
+title: "Lab 4"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+report_03_11_2020 <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-11-2020.csv")) %>%
+  rename(Country_Region = "Country/Region", Province_State = "Province/State")
+```
+```{r}
+str(report_03_11_2020)
+```
+```{r}
+View(report_03_11_2020)
+```
+
+```{r}
+install.packages("DT")
+```
+
+```{r}
+library(DT)
+```
+```{r}
+datatable(report_03_11_2020)
+```
+## Excercises Part 1
+
+## 1. 
+
+```{r}
+report_09_13_2020 <- read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/09-13-2020.csv")) 
+ 
+```
+
+```{r}
+str(report_09_13_2020)
+```
+
+```{r}
+View(report_09_13_2020)
+```
+
+## 2. 
+
+```{r}
+report_09_13_2020 %>%   group_by(Country_Region) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE))
+```
+
+## 3. 
+
+```{r}
+report_09_13_2020 %>% filter(US) %>% group_by(Country_Region) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE))
+```
+
+## 4.
+```{r}
+report_09_13_2020 %>%   group_by(Country_Region) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>% arrange(desc(Deaths)) %>% slice_max(Deaths, n = (10))
+```
+
+## Excercise Part 2 
+
+## 1. 
+
+
