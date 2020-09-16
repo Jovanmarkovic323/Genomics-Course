@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 [Lab2](Lab-2-Reference-example.html)
 [Lab3A](Lab-3A.html)
 [Lab3B](Lab-3B.html)
-[Lab4]
+[Lab4](Lab-4.html)
 [Lab4a](Lab-file-4a.html)
 
 
