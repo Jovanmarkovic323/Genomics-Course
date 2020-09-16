@@ -36,10 +36,7 @@ install.packages("hexbin")
 library("hexbin")
 ```
 
-```{r}
-surveys_complete +
- geom_hex()
-```
+
 
 ```{r}
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
