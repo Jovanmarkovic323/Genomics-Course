@@ -20,9 +20,7 @@ report_03_11_2020 <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISan
 ```{r}
 str(report_03_11_2020)
 ```
-```{r}
-View(report_03_11_2020)
-```
+
 
 ```{r}
 install.packages("DT")
@@ -47,9 +45,7 @@ report_09_13_2020 <- read_csv(url("https://raw.githubusercontent.com/CSSEGISandD
 str(report_09_13_2020)
 ```
 
-```{r}
-View(report_09_13_2020)
-```
+
 
 ## 2. 
 
@@ -60,7 +56,7 @@ report_09_13_2020 %>%   group_by(Country_Region) %>% summarize(Deaths = sum(Deat
 ## 3. 
 
 ```{r}
-report_09_13_2020 %>% filter(US) %>% group_by(Country_Region) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE))
+report_09_13_2020 %>%  filter(Country_Region == "US") %>% group_by(Province_State) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE))
 ```
 
 ## 4.
@@ -72,4 +68,107 @@ report_09_13_2020 %>%   group_by(Country_Region) %>% summarize(Deaths = sum(Deat
 
 ## 1. 
 
+## 9_13_2020 data
+```{r}
+Top10Deaths <- report_09_13_2020 %>%   group_by(Country_Region) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>% arrange(desc(Deaths)) %>% slice_max(Deaths, n = (10))
+```
+```{r}
+ggplot(data = Top10Deaths, aes(x = Country_Region, y = Deaths)) +
+  geom_point()
+```
+
+
+```{r}
+report_09_13_2020 %>%   group_by(Country_Region) %>% summarize(Confirmed = sum(Confirmed, na.rm = TRUE)) %>% arrange(desc(Confirmed)) %>% slice_max(Confirmed, n = (10))
+```
+
+```{r}
+Top10Confirmed <- report_09_13_2020 %>%   group_by(Country_Region) %>% summarize(Confirmed = sum(Confirmed, na.rm = TRUE)) %>% arrange(desc(Confirmed)) %>% slice_max(Confirmed, n = (10))
+```
+
+```{r}
+ggplot(data = Top10Confirmed, aes(x = Country_Region, y = Confirmed)) +
+  geom_point()
+```
+
+## 3_11_2020
+```{r}
+Top10Deaths3_11 <- report_03_11_2020 %>%   group_by(Country_Region) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>% arrange(desc(Deaths)) %>% slice_max(Deaths, n = (10))
+```
+
+```{r}
+ggplot(data = Top10Deaths3_11, aes(x = Country_Region, y = Deaths)) +
+  geom_point()
+```
+
+```{r}
+Top10Confirmed3_11 <- report_03_11_2020 %>%   group_by(Country_Region) %>% summarize(Confirmed = sum(Confirmed, na.rm = TRUE)) %>% arrange(desc(Confirmed)) %>% slice_max(Confirmed, n = (10))
+```
+```{r}
+report_03_11_2020 %>%   group_by(Country_Region) %>% summarize(Confirmed = sum(Confirmed, na.rm = TRUE)) %>% arrange(desc(Confirmed)) %>% slice_max(Confirmed, n = (10))
+```
+
+```{r}
+ggplot(data = Top10Confirmed3_11, aes(x = Country_Region, y = Confirmed)) +
+  geom_point()
+```
+
+## Excercise 2 Part 2
+
+## 09_13_20 data
+
+```{r}
+report_09_13_2020 %>%  filter(Country_Region == "US") %>% group_by(Province_State) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE))
+```
+
+
+```{r}
+Top10DeathsStates9_13 <- report_09_13_2020 %>%  filter(Country_Region == "US") %>% group_by(Province_State) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>% arrange(desc(Deaths)) %>% slice_max(Deaths, n = (10))
+```
+
+```{r}
+ggplot(data = Top10DeathsStates9_13, aes(x = Province_State,  y = Deaths)) + 
+    geom_bar(stat = 'identity') 
+```
+
+```{r}
+report_09_13_2020 %>%  filter(Country_Region == "US") %>% group_by(Province_State) %>% summarize(Confirmed = sum(Confirmed, na.rm = TRUE)) %>% arrange(desc(Confirmed)) %>% slice_max(Confirmed, n = (10))
+```
+
+```{r}
+Top10ConfirmedStates9_13 <- report_09_13_2020 %>%  filter(Country_Region == "US") %>% group_by(Province_State) %>% summarize(Confirmed = sum(Confirmed, na.rm = TRUE)) %>% arrange(desc(Confirmed)) %>% slice_max(Confirmed, n = (10))
+```
+
+```{r}
+ggplot(data = Top10ConfirmedStates9_13, aes(x = Province_State,  y = Confirmed)) + 
+    geom_bar(stat = 'identity') 
+```
+
+## Top 10 Confirmed and Deaths 3_11_20
+
+```{r}
+report_03_11_2020 %>%  filter(Country_Region == "US") %>% group_by(Province_State) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>% arrange(desc(Deaths)) %>% slice_max(Deaths, n = (5))
+```
+
+```{r}
+Top10DeathsStates3_11 <- report_03_11_2020 %>%  filter(Country_Region == "US") %>% group_by(Province_State) %>% summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>% arrange(desc(Deaths)) %>% slice_max(Deaths, n = (5))
+```
+
+```{r}
+ggplot(data = Top10DeathsStates3_11, aes(x = Province_State,  y = Deaths)) + 
+    geom_bar(stat = 'identity') 
+```
+
+```{r}
+report_03_11_2020 %>%  filter(Country_Region == "US") %>% group_by(Province_State) %>% summarize(Confirmed = sum(Confirmed, na.rm = TRUE)) %>% arrange(desc(Confirmed)) %>% slice_max(Confirmed, n = (10))
+```
+
+```{r}
+Top10ConfirmedStates3_11 <- report_03_11_2020 %>%  filter(Country_Region == "US") %>% group_by(Province_State) %>% summarize(Confirmed = sum(Confirmed, na.rm = TRUE)) %>% arrange(desc(Confirmed)) %>% slice_max(Confirmed, n = (10))
+```
+
+```{r}
+ggplot(data = Top10ConfirmedStates3_11, aes(x = Province_State,  y = Confirmed)) + 
+    geom_bar(stat = 'identity') 
+```
 
