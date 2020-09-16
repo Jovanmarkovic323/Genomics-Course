@@ -17,4 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 [Lab4](Lab-4.html)
 [Lab4a](Lab-file-4a.html)
 
+## Hello Dr. Blanchard! I have not learned how to put anything cool in here just yet but I hope you're having a great Sunday!
+
+
 
