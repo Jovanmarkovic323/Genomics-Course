@@ -77,7 +77,7 @@ Confirmed_State_3_13_9_13_joined_long <- Confirmed_State_3_13_9_13_joined %>%
                             names_to = "Date", values_to = "Confirmed")
 ```
 
-```{r}
+```{r, fig.width= 5, fig.height= 10}
 # to adjust figure size {r, fig.width = 5, fig.height = 10}
 ggplot(Confirmed_State_3_13_9_13_joined_long, aes(x = Confirmed,  y = Province_State))  + 
     geom_point(aes(color = Date)) 
@@ -215,6 +215,67 @@ time_series_long_joined_counts %>%
 ### Excercises
 
 ```{r}
+Confirmed_State_6_13 <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/06-13-2020.csv")) %>%
+  filter (Country_Region == "US") %>% 
+  group_by(Province_State, Country_Region) %>% 
+  summarise(Confirmed = sum(Confirmed)) 
+```
 
+```{r}
+str(Confirmed_State_6_13)
+```
+
+
+```{r}
+Confirmed_State_9_13 <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/09-13-2020.csv")) %>% 
+  filter (Country_Region == "US") %>% 
+  group_by(Province_State, Country_Region) %>% 
+  summarise(Confirmed = sum(Confirmed)) 
+```
+
+```{r}
+str(Confirmed_State_9_13)
+```
+
+```{r}
+setdiff(Confirmed_State_9_13$Province_State, Confirmed_State_6_13$Province_State)
+```
+
+```{r}
+Confirmed_State_9_13 <- Confirmed_State_9_13 %>% 
+  filter(Province_State != "Recovered") 
+```
+
+```{r}
+Confirmed_State_6_13_9_13_joined <- full_join(Confirmed_State_6_13,
+      Confirmed_State_9_13, by = c("Province_State"))
+head(Confirmed_State_6_13_9_13_joined)
+```
+```{r}
+Confirmed_State_6_13_9_13_joined <- full_join(Confirmed_State_6_13,
+      Confirmed_State_9_13, by = c("Province_State")) %>% 
+      rename(Confirmed_6_13_2020 = "Confirmed.x", Confirmed_9_13_2020 = "Confirmed.y") %>% 
+      select(-Country_Region.x, -Country_Region.y) %>% 
+      replace_na(list(Confirmed_6_13_2020 = 0))
+head(Confirmed_State_6_13_9_13_joined)
+```
+```{r, fig.width= 5, fig.height= 10}
+
+ggplot(Confirmed_State_6_13_9_13_joined, aes(x = Confirmed,  y = Province_State))  + 
+    geom_bar()
+```
+
+```{r}
+ Confirmed_State_6_13_9_13_joined_long <- Confirmed_State_6_13_9_13_joined %>% 
+              pivot_longer(-c(Province_State),
+                            names_to = "Date", values_to = "Confirmed")
+```
+
+
+
+
+```{r}
+ggplot(Confirmed_State_6_13_9_13_joined, aes(x = Confirmed,  y = Province_State))  + 
+    geom_boxplot(aes(color = Date))
 ```
 
