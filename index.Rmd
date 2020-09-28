@@ -26,6 +26,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Lab5Extra](Lab-5-extra.html)
 
+[Lab6](Lab-6.html)
+
+[Lab 6 Report]()
+
 ## Hello Dr. Blanchard! I have not learned how to put anything cool in here just yet but I hope you're having a great Sunday!
 
 

@@ -1,0 +1,55 @@
+---
+title: "Lab 6 Report"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+## static map
+
+```{r}
+daily_report <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/06-26-2020.csv")) %>% 
+  rename(Long = "Long_") %>% 
+  filter(Province_State == "Florida") %>% 
+  group_by(Admin2) %>% 
+  summarize(Confirmed = sum(Confirmed)) %>% 
+  mutate(Admin2 = tolower(Admin2))
+us <- map_data("state")
+fl_us <- subset(us, region == "florida")
+counties <- map_data("county")
+fl_county <- subset(counties, region == "florida")
+state_join <- left_join(fl_county, daily_report, by = c("subregion" = "Admin2")) 
+# plot state map
+ggplot(data = fl_county, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1.3) + 
+# Add data layer
+  geom_polygon(data = state_join, aes(fill = Confirmed), color = "white") +
+    scale_fill_gradientn(colors = brewer.pal(n = 5, name = "OrRd"),
+                         trans = "log10") +
+  labs(title = "COVID-19 Confirmed Cases in Florida'")
+```
+### Interactive Graph
+
+```{r}
+library(plotly)
+ggplotly(
+  ggplot(data = fl_county, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1.3) + 
+# Add data layer
+  geom_polygon(data = state_join, aes(fill = Confirmed), color = "black") +
+    scale_fill_gradientn(colours = 
+                         wes_palette("BottleRocket2", 100, type = "continuous")) +
+  ggtitle("COVID-19 Cases in fl") +
+# Cleaning up the graph
+  labs(x=NULL, y=NULL) +
+  theme(panel.border = element_blank()) +
+  theme(panel.background = element_blank()) +
+  theme(axis.ticks = element_blank()) +
+  theme(axis.text = element_blank())
+)
+```
+
