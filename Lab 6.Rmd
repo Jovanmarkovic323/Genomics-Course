@@ -207,16 +207,16 @@ daily_report <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData
 ```
 
 ```{r}
-mybreaks <- c(100, 10000, 100000, 1000000, 100000000)
+mybreaks <- c(1000, 10000, 50000, 100000, 250000)
 ggplot(daily_report, aes(x = Long, y = Lat, size = Confirmed)) +
     borders("state", colour = "white", fill = "grey90") +
     geom_point(aes(x=Long, y=Lat, size=Confirmed, color=Confirmed),stroke=F, alpha=0.7) +
-    scale_size_continuous(name="Cases", trans="log", range=c(1,7), 
-                        breaks=mybreaks, labels = c("100-999",
-                        "1,000-9,999", "100,000-999,999", "1,000,000-99,999,999", "100,000,000+")) +
+    scale_size_continuous(name="Cases", range=c(1,6), 
+                        breaks=mybreaks, labels = c("1-999",
+                        "1,000-9,999", "10,000-49,999", "50,000-99,999", "100,000+")) +
     scale_color_viridis_c(option="viridis",name="Cases",
-                        trans="log", breaks=mybreaks, labels = c("100-999",
-                        "1,000-9,999", "100,000-999,999", "1,000,000-99,999,999", "100,000,000+"))  +
+                         breaks=mybreaks, labels = c("1-999",
+                        "1,000-9,999", "10,000-49,999", "50,000-99,999", "100,000+"))  +
 # Cleaning up the graph
   
   theme_void() + 
