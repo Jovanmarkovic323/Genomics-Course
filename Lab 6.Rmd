@@ -7,6 +7,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Application written in R [@RCoreTeam]
+
+# Refrences
+
 ## R Markdown
 
 ```{r}
@@ -309,9 +313,9 @@ ggplotly(
 
 ### Exercise 5
 
-## static map
+## This is a static map of Florida's confirmed COVID-19 cases as of 06/26/2020. A color gradient is used to show areas with more severe outbreaks. 
 
-```{r}
+```{r, echo=false}
 daily_report <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/06-26-2020.csv")) %>% 
   rename(Long = "Long_") %>% 
   filter(Province_State == "Florida") %>% 
@@ -332,9 +336,9 @@ ggplot(data = fl_county, mapping = aes(x = long, y = lat, group = group)) +
                          trans = "log10") +
   labs(title = "COVID-19 Confirmed Cases in Florida'")
 ```
-### Interactive Graph
+### This is an interactive map of Florida's confirmed COVID-19 cases as of 06/26/2020. By hovering over different counties, you can view the exact number of confirmed cases. 
 
-```{r}
+```{r, echo=False}
 library(plotly)
 ggplotly(
   ggplot(data = fl_county, mapping = aes(x = long, y = lat, group = group)) + 

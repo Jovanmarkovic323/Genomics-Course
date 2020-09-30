@@ -1,5 +1,4 @@
 
-
 DNA <- "ATCGGGA"
 ### Exercise 1
 x <- 3
