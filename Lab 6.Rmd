@@ -20,6 +20,7 @@ library(mapdata)
 library(lubridate)
 library(viridis)
 library(wesanderson)
+library(plotly)
 ```
 
 ```{r}
@@ -185,21 +186,26 @@ ggplotly(
 )
 ```
 ### Exercise 1
+
+
 ```{r}
 daily_report <- read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/09-26-2020.csv")) %>% 
   rename(Long = "Long_") %>%
-  drop_na(Lat, Long) %>%
+  filter(Lat != "NA") %>%
+  filter(Long != "NA") %>%
   group_by(Country_Region) %>%
   summarize(Deaths = sum(Deaths), Lat = mean(Lat), Long = mean(Long))
-    
-ggplotly(ggplot(daily_report, aes(x = Long, y = Lat, size = Confirmed/100)) +
+    library(plotly)
+ggplotly(
+ggplot(daily_report, aes(x = Long, y = Lat, text = Country_Region, size = Deaths/1000)) +
     borders("world", colour = NA, fill = "grey90") +
     theme_bw() +
-    geom_point(aes(size = Confirmed/100), shape = 21, color='purple', fill='purple', alpha = 0.5) +
+    geom_point(aes(size = Deaths/1000), shape = 21, color='purple', fill='purple', alpha = 0.5) +
     labs(title = 'World COVID-19 Confirmed cases',x = '', y = '',
         size="Cases(x100)") +
     theme(legend.position = "right") +
     coord_fixed(ratio=1.5)
+)
 ```
 ### Excercise 2
 ```{r}
@@ -318,7 +324,7 @@ ggplotly(
 
 ## This is a static map of Florida's confirmed COVID-19 cases as of 06/26/2020. A color gradient is used to show areas with more severe outbreaks. 
 
-```{r, echo=false}
+```{r, echo=FALSE}
 daily_report <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/06-26-2020.csv")) %>% 
   rename(Long = "Long_") %>% 
   filter(Province_State == "Florida") %>% 
@@ -341,7 +347,7 @@ ggplot(data = fl_county, mapping = aes(x = long, y = lat, group = group)) +
 ```
 ### This is an interactive map of Florida's confirmed COVID-19 cases as of 06/26/2020. By hovering over different counties, you can view the exact number of confirmed cases. 
 
-```{r, echo=False}
+```{r, echo=FALSE}
 library(plotly)
 ggplotly(
   ggplot(data = fl_county, mapping = aes(x = long, y = lat, group = group)) + 
