@@ -32,7 +32,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Lab6](Lab-6.html)
 
-[Lab 6 Report](lab)
+[Lab 6 Report](Lab-6-REPORT.html)
+
+[Lab 7 Report](Lab_7.html)
 
 ## Hello Dr. Blanchard! I have not learned how to put anything cool in here just yet but I hope you're having a great Sunday!
 
