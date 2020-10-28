@@ -1,0 +1,138 @@
+---
+title: "Lab_9x"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+x <- runif(1, 0, 10)  
+if(x > 4) {
+        y <- 10
+} else {
+        y <- 0
+}
+```
+
+```{r}
+for(m in 1:10) 
+        print(m)
+```
+
+```{r}
+x <- c("w", "x", "y", "z")
+for(m in 1:4) {
+        ## Print out each element of 'x'
+        print(x[m])  
+}
+```
+
+```{r}
+## Generate a sequence based on length of 'x'
+for(m in seq_along(x)) {   
+        print(x[m])
+}
+```
+
+```{r}
+for(letter in x) {
+        print(letter)
+}
+```
+
+```{r}
+for(m in 1:4) print(x[m])
+```
+
+```{r}
+x <- matrix(1:8, 2, 4)
+for(m in seq_len(nrow(x))) {
+        for(j in seq_len(ncol(x))) {
+                print(x[m, j])
+        }   
+}
+
+```
+
+```{r}
+count <- 0
+while(count < 20) {
+        print(count)
+        count <- count + 1
+}
+```
+
+```{r}
+z <- 5
+set.seed(1)
+while(z >= 3 && z <= 10) {
+        coin <- rbinom(1, 1, 0.5)
+        
+        if(coin == 1) {  ## random walk
+                z <- z + 2
+        } else {
+                z <- z - 2
+        } 
+}
+print(z)
+```
+
+
+```{r}
+ f <- function() {
+         cat("Hello, professor Blanchard!\n")
+ }
+ f()
+```
+
+
+```{r}
+ f <- function(num) {
+         for(i in seq_len(num)) {
+                 cat("Hello, professor Blanchard!\n")
+         }
+ }
+ f(10)
+
+```
+
+```{r}
+ f <- function(num) {
+         hello <- "Hello, professor Blanchard!\n"
+         for(i in seq_len(num)) {
+                 cat(hello)
+         }
+         chars <- nchar(hello) * num
+         chars
+ }
+ meaningoflife <- f(10)
+
+ print(meaningoflife)
+
+```
+
+
+```{r}
+f <- function(num = 3) {
+         hello <- "Hello, professor Blanchard!\n"
+         for(i in seq_len(num)) {
+                 cat(hello)
+         }
+         chars <- nchar(hello) * num
+         chars
+ }
+ f()    ## Use default value for 'num'
+
+ f(10)   ## Use user-specified value
+
+```
+
+```{r}
+f(num = 8)
+```
+

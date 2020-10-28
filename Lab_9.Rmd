@@ -1,0 +1,63 @@
+---
+title: "Lab_9"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(stringr)
+library(tidyverse)
+```
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, "an")
+```
+```{r}
+str_view(x, ".a.")
+```
+```{r}
+# To create the regular expression, we need \\
+dot <- "\\."
+
+# But the expression itself only contains one:
+writeLines(dot)
+```
+
+```{r}
+# And this tells R to look for an explicit .
+x <- c("abc", "a.c", "bef")
+str_view(x, "a\\.c")
+```
+```{r}
+x <- "a\\b"
+writeLines(x)
+```
+
+```{r}
+str_view(x, "\\\\")
+```
+
+### Exercise 14.3.1.1
+
+### 1. "/" will result in the escape of the next adjacent character.
+
+### "//" will result in essentially "/" as it will also result in an escape of the next character.
+
+### "///" will result in the first two backslashes being expressed as literal backslashes in the expression but the third will escape the next character.
+
+
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, "^a")
+```
+```{r}
+
+```
+

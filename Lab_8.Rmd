@@ -1,0 +1,66 @@
+---
+title: "Lab_8"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "3.11")
+```
+
+```{r}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("ggtree")
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+library(ggtree)
+
+```
+
+```{r}
+browseVignettes("ggtree")
+```
+
+```{r}
+install.packages("ape")
+```
+
+
+```{r}
+library(ape)
+```
+
+
+```{r}
+library(tidyverse)
+library(ggtree)
+
+tree <- read.tree("data/tree_newick.nwk")
+tree
+```
+
+```{r}
+# build a ggplot with a geom_tree
+ggplot(tree) + geom_tree() + theme_tree()
+
+# This is convenient shorthand
+ggtree(tree)
+
+```
+
+
+
