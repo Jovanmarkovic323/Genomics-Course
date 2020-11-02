@@ -42,6 +42,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Lab 9x Report](Lab_9x.html)
 
+[Lab 10 Report](Lab_10.html)
+
 ## Hello Dr. Blanchard! I have not learned how to put anything cool in here just yet but I hope you're having a great Sunday!
 
 
