@@ -41,7 +41,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Lab 8 Report](Lab)
 
-[Lab 9 Report](Lab)
+[Lab 9 Report](Lab_9.html)
 
 [Lab 9x Report](Lab_9x.html)
 
