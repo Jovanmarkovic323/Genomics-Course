@@ -1,0 +1,32 @@
+---
+title: "Lab_12_images"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(knitr)
+```
+
+```{r}
+knitr::include_graphics('String Network Fixed(1).png')
+```
+
+
+```{r}
+knitr::include_graphics('String Network(2).png')
+```
+
+```{r}
+knitr::include_graphics('String Network - ovarian cancer - 1(1).png')
+```
+
+```{r}
+knitr::include_graphics('vignette_image.png')
+```
+
