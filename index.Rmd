@@ -49,8 +49,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Lab 11 report](Lab_11.html)
 
-[Lab 12 report](Lab 12.html)
-
 [Lab 12 images](Lab12_images.html)
 
 ## Hello Dr. Blanchard! I have not learned how to put anything cool in here just yet but I hope you're having a great day and thank you for a great semester!
