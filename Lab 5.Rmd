@@ -283,13 +283,6 @@ time_series_deaths <- read_csv("data/time_series_covid19_deaths_global.csv")%>%
 ```
 
 
-
-
-
-
-
-### FINAL
-
 ```{r}
 library(ggplot2)
 ```
@@ -374,4 +367,14 @@ Confirmed_State_3_13_9_13_joined <- full_join(Confirmed_State_3_13,
       replace_na(list(Confirmed_3_13_2020 = 0))
 head(Confirmed_State_3_13_9_13_joined)
 ```
+```{r, fig.height=8}
+ggplot(data=Confirmed_State_9_13, aes(x=Province_State, y=Confirmed)) +
+  geom_point() +
+    
+  facet_wrap(~Province_State, ncol=2, scales="free_y") +
+ggthemes::theme_solarized_2() +
+  ggtitle("Confirmed Cases per US State")
+```
+
+
 
